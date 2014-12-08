@@ -35,7 +35,12 @@ class Libsbml < Formula
         args << '-DWITH_PYTHON=ON'
         args << "-DPYTHON_EXECUTABLE='#{%x(python-config --prefix).chomp}/bin/python'"
         args << "-DPYTHON_INCLUDE_DIR='#{%x(python-config --prefix).chomp}/include/python2.7'"
-        args << "-DPYTHON_LIBRARY='#{%x(python-config --prefix).chomp}/lib/libpython2.7.dylib'"
+        #ubuntu uses .so files instead of .dylib, so we need a conditional here
+        if /linux/ =~ RUBY_PATFORM:
+          args << "-DPYTHON_LIBRARY='#{%x(python-config --prefix).chomp}/lib/libpython2.7.so"
+        else:
+           args << "-DPYTHON_LIBRARY='#{%x(python-config --prefix).chomp}/lib/libpython2.7.dylib"
+        end
       end
 
       args << '-DWITH_CSHARP=ON' if build.with? 'csharp'
