@@ -38,7 +38,7 @@ class Libsbml < Formula
         #ubuntu uses .so files instead of .dylib, so we need a conditional here
         if /linux/ =~ RUBY_PATFORM then
           args << "-DPYTHON_LIBRARY='#{%x(python-config --prefix).chomp}/lib/libpython2.7.so"
-        else:
+        else
            args << "-DPYTHON_LIBRARY='#{%x(python-config --prefix).chomp}/lib/libpython2.7.dylib"
         end
       end
