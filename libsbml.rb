@@ -36,7 +36,7 @@ class Libsbml < Formula
         args << "-DPYTHON_EXECUTABLE='#{%x(python-config --prefix).chomp}/bin/python'"
         args << "-DPYTHON_INCLUDE_DIR='#{%x(python-config --prefix).chomp}/include/python2.7'"
         #ubuntu uses .so files instead of .dylib, so we need a conditional here
-        if /linux/ =~ RUBY_PATFORM:
+        if /linux/ =~ RUBY_PATFORM then
           args << "-DPYTHON_LIBRARY='#{%x(python-config --prefix).chomp}/lib/libpython2.7.so"
         else:
            args << "-DPYTHON_LIBRARY='#{%x(python-config --prefix).chomp}/lib/libpython2.7.dylib"
